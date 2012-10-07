@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# chkconfig: 35 90 12
+# description: login-console
+#
+# Get function from functions library
+. /etc/init.d/functions
+
+ESC=$(echo -e "\e")
+CLEAR_SCREEN=$(echo -e "\e[H\e[2J")
+IPADDR=`/sbin/ifconfig | sed '/Bcast/!d' | awk '{print $2}'| awk '{print $2}' FS=":"`
+YELLOW="$ESC[33m"
+WHITE="$ESC[37m"
+HIDDEN="$ESC[8;30;40m"
+RELEASE=$(cat /etc/vm-rpmbuild/release)
+
+start() {
+
+echo $CLEAR_SCREEN > /etc/issue
+echo "
+$YELLOW
+                                RPM Building Appliance
+                                        v$RELEASE
+
+$WHITE
+
+
+
+
+                Navigate to http://$IPADDR with a web browser
+
+$YELLOW
+
+
+
+
+
+
+
+
+                              ©2012 Andy@AndySpohn.com
+
+$HIDDEN" >> /etc/issue
+
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  restart|reload|condrestart)
+        stop
+        ;;
+  *)
+        echo $"Usage: $0 {start|restart}"
+        exit 1
+esac
+exit 0

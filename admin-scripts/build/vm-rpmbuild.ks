@@ -53,9 +53,10 @@ httpd
 jdk
 tomcat6
 
-# Packages needed to build rpms
+# Packages needed to build and host rpms and repos
 rpm-build
-
+rpmlint
+createrepo
 
 %post
 (
@@ -131,8 +132,6 @@ echo "
 JAVA_HOME=\"/usr/java/latest\"
 JAVA_OPTS=\"-DJENKINS_HOME=/mnt/jenkins -Xmx512m\"
 " >> /etc/vm-rpmbuild/web/tomcat6.conf
-
-# https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache
 
 cd /usr/share/tomcat6/webapps/
 curl -O http://192.168.100.2/misc/build.war
