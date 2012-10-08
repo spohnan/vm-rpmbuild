@@ -1,7 +1,7 @@
 # Settings that might need to be updated
 %define name                  rbuild-login-console
 %define version               1.0
-%define release               1
+%define buildroot             %{_topdir}/BUILD/%{name}-%{version}-root
 
 # RPM Header info
 Summary: Login console for rpmbuild appliance
@@ -24,10 +24,11 @@ exit 0
 exit 0
 
 %install
-exit 0
+rm -fr %{buildroot}
+cp -R %{_sourcedir}/rbuild-login-console %{buildroot}
 
 %clean
-exit 0
+rm -fr %{buildroot}
 
 %pre
 exit 0
