@@ -33,6 +33,10 @@ rm -fr %{buildroot}
 %pre
 exit 0
 
+%post
+/sbin/chkconfig rbuild-login-console on
+/sbin/service rbuild-login-console start
+
 %files
 %defattr(755,root,root)
 %{_sysconfdir}/init.d/login-console
