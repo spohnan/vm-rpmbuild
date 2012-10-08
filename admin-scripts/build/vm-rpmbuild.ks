@@ -170,6 +170,7 @@ cost=1
 [local-thirdparty]
 name=Local - Third Party Software Mirror
 baseurl=http://192.168.100.2/repo/thirdparty/x86_64/
+metadata_expire=1
 gpgcheck=0
 cost=1
 " > /etc/yum.repos.d/CentOS-Local.repo
