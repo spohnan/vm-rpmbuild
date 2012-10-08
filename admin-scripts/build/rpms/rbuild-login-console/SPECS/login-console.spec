@@ -34,8 +34,8 @@ rm -fr %{buildroot}
 exit 0
 
 %post
-/sbin/chkconfig rbuild-login-console on
-/sbin/service rbuild-login-console start
+/sbin/chkconfig login-console on
+/sbin/service login-console start
 
 %files
 %defattr(755,root,root)
