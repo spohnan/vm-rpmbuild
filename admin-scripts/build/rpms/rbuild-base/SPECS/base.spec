@@ -35,7 +35,7 @@ exit 0
 
 %post
 # Update build timestamp
-echo $(date +%Y-%m-%dT%H:%MZ) > %{_sysconfdir}/vm-rpmbuild/build
+echo `date +%Y-%m-%dT%H:%MZ` > %{_sysconfdir}/vm-rpmbuild/build
 # Update release
 echo %{version} > %{_sysconfdir}/vm-rpmbuild/release
 
@@ -44,6 +44,7 @@ echo %{version} > %{_sysconfdir}/vm-rpmbuild/release
 %{_sysconfdir}/vm-rpmbuild
 %{_sysconfdir}/vm-rpmbuild/build
 %{_sysconfdir}/vm-rpmbuild/release
+/usr/local/bin/update-rpm-repo.sh
 
 %changelog
 * Sun Oct 9 2012 Andrew Spohn <Andy@AndySpohn.com> - 1.0
