@@ -52,6 +52,7 @@ fi
 %{_sysconfdir}/vm-rpmbuild
 /usr/local/bin/update-rpm-repo.sh
 /usr/local/bin/jenkins-update-rpm-repo.sh
+/usr/local/bin/prune-old-rpm-versions.sh
 
 %defattr(664,root,root)
 %{_sysconfdir}/vm-rpmbuild/build
