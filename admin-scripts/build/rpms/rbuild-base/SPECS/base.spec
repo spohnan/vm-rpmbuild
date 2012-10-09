@@ -39,6 +39,14 @@ echo `date +%Y-%m-%dT%H:%MZ` > %{_sysconfdir}/vm-rpmbuild/build
 # Update release
 echo %{version} > %{_sysconfdir}/vm-rpmbuild/release
 
+# Can't make this rpm depend on rbuild-login-console as that would set up
+# a circular dependency so we're just check for the existence of the file
+# it puts in place before calling a restart on the service
+if [ -f /etc/init.d/login-console ]; then
+    # Update the build timestamp on the login-console screen
+    /sbin/service login-console restart
+fi
+
 %files
 %defattr(755,root,root)
 %{_sysconfdir}/vm-rpmbuild
