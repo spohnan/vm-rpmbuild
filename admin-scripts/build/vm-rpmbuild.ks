@@ -74,6 +74,9 @@ rbuild-login-console
 /sbin/chkconfig httpd on
 /sbin/chkconfig tomcat6 on
 
+# Turn off some services we don't need at the moment
+/sbin/chkconfig cups off
+/sbin/chkconfig postfix off
 
 # ---------------------------------------------------------------
 # Update Apache httpd web server config
