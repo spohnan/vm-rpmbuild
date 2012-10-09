@@ -12,6 +12,7 @@ IPADDR=`/sbin/ifconfig | sed '/Bcast/!d' | awk '{print $2}'| awk '{print $2}' FS
 YELLOW="$ESC[33m"
 WHITE="$ESC[37m"
 HIDDEN="$ESC[8;30;40m"
+BUILD=$(cat /etc/vm-rpmbuild/build)
 RELEASE=$(cat /etc/vm-rpmbuild/release)
 
 start() {
@@ -38,6 +39,8 @@ $YELLOW
 
 
 
+
+                             Updated: $BUILD
                               ©2012 Andy@AndySpohn.com
 
 $HIDDEN" >> /etc/issue
@@ -45,11 +48,8 @@ $HIDDEN" >> /etc/issue
 }
 
 case "$1" in
-  start)
+  start|restart)
         start
-        ;;
-  restart|reload|condrestart)
-        stop
         ;;
   *)
         echo $"Usage: $0 {start|restart}"

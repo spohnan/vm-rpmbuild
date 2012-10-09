@@ -13,6 +13,7 @@ BuildRoot: %{buildroot}
 Source:    https://github.com/spohnan/vm-rpmbuild/tree/master/admin-scripts/build/rpms/rbuild-login-console
 URL:       https://github.com/spohnan/vm-rpmbuild
 License:   MIT
+requires:  rbuild-base
 
 %description
 A customized login screen
