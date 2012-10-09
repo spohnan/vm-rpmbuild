@@ -78,6 +78,13 @@ rbuild-login-console
 # ---------------------------------------------------------------
 # Update Apache httpd web server config
 # ---------------------------------------------------------------
+# Set up the repo hosting area
+mkdir /var/www/html/repos
+chown root:tomcat /var/www/html/repos
+chmod g+s /var/www/html/repos
+mkdir -p /var/www/html/repos/vm-rpmbuild-dev/{SRPMS,x86_64}
+chmod -R 775 /var/www/html/repos
+
 # Set up the config directory
 mkdir /etc/vm-rpmbuild/web
 
