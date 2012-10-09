@@ -1,10 +1,6 @@
 #!/bin/bash
 #
-# update-rpm-repo.sh - Create a new rpmbuild vm appliance
-#
-# This script is meant to be used by the Jenkins build service to copy
-# RPMs from the local build workspace to a hosted RPM repo and make it
-# available by setting the right permissions and updating the repodata
+# update-rpm-repo.sh - Ensure RPMs in repo directory are usable by YUM
 #
 
 # Sanity checks to ensure we got the rpm-repo-dir arg
@@ -19,10 +15,6 @@ if ! test -d "$1" ; then
 fi
 
 RPM_REPO_DIR="$1"
-
-# Copy to the dev repo
-cp RPMS/noarch/*.rpm $RPM_REPO_DIR/x86_64
-cp SRPMS/*.rpm $RPM_REPO_DIR/SRPMS
 
 # Make SELinux happy
 chcon unconfined_u:object_r:httpd_sys_content_t:s0 $RPM_REPO_DIR/x86_64/*.rpm

@@ -50,9 +50,12 @@ fi
 %files
 %defattr(755,root,root)
 %{_sysconfdir}/vm-rpmbuild
+/usr/local/bin/update-rpm-repo.sh
+/usr/local/bin/jenkins-update-rpm-repo.sh
+
+%defattr(664,root,root)
 %{_sysconfdir}/vm-rpmbuild/build
 %{_sysconfdir}/vm-rpmbuild/release
-/usr/local/bin/update-rpm-repo.sh
 
 %changelog
 * Sun Oct 9 2012 Andrew Spohn <Andy@AndySpohn.com> - 1.0
