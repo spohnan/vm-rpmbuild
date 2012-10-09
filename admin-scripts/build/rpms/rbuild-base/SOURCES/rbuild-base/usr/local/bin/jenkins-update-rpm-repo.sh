@@ -20,9 +20,9 @@ fi
 
 RPM_REPO_DIR="$1"
 
-# Move RPMs from Jenkins workspace (where this gets called) to an RPM repo
-mv RPMS/noarch/*.rpm $RPM_REPO_DIR/x86_64
-mv SRPMS/*.rpm $RPM_REPO_DIR/SRPMS
+# Copy RPMs from Jenkins workspace (where this gets called) to an RPM repo
+cp RPMS/noarch/*.rpm $RPM_REPO_DIR/x86_64
+cp SRPMS/*.rpm $RPM_REPO_DIR/SRPMS
 
 # Update metadata info for that repo
 /usr/local/bin/update-rpm-repo.sh $RPM_REPO_DIR
