@@ -136,8 +136,10 @@ ln -s /etc/vm-rpmbuild/web/tomcat6.conf /usr/share/tomcat6/conf/tomcat6.conf
 ln -s /etc/vm-rpmbuild/web/server.xml /usr/share/tomcat6/conf/server.xml
 
 # Create an area out of the web root for Jenkins to store information
-mkdir /mnt/jenkins
-chown tomcat.tomcat /mnt/jenkins
+mkdir -p /mnt/vm-rpmbuild/jenkins
+chown root.tomcat /mnt/vm-rpmbuild/jenkins
+chmod g+s /mnt/vm-rpmbuild/jenkins
+chmod -R 775 /mnt/vm-rpmbuild/jenkins
 
 # Modify the http connector element in the tomcat server.xml file so it
 # works with our proxy and won't complain about Tomcat URI Encoding
