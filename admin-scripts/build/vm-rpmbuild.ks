@@ -6,7 +6,9 @@ lang en_US
 timezone  Etc/UTC
 auth  --useshadow  --enablemd5
 bootloader --location=mbr
-firewall --enabled --port=22:tcp,80:tcp,8181:tcp
+#TODO: If we use proxy through httpd get rid of 8080
+firewall --enabled --port=22:tcp,80:tcp,8181:tcp,8080:tcp
+#firewall --enabled --port=22:tcp,80:tcp,8181:tcp
 firstboot --disable
 network --hostname vm-rpmbuild
 network --device eth0 --bootproto dhcp
@@ -44,6 +46,8 @@ vim-enhanced
 screen
 # Listen for VM software startup/shutdown commands
 acpid
+# Appliance change detection
+aide
 
 # Needed to both install Apache httpd and configure selinux so it can run on multiple ports
 policycoreutils-python
@@ -58,6 +62,10 @@ rpm-build
 rpmlint
 createrepo
 
+# Custom packages
+rbuild-base
+rbuild-login-console
+
 %post
 (
 
@@ -66,14 +74,13 @@ createrepo
 /sbin/chkconfig httpd on
 /sbin/chkconfig tomcat6 on
 
-# Set up the config directories
-mkdir -p /etc/vm-rpmbuild/web
-
-echo "1.0" > /etc/vm-rpmbuild/release
 
 # ---------------------------------------------------------------
 # Update Apache httpd web server config
 # ---------------------------------------------------------------
+# Set up the config directory
+mkdir /etc/vm-rpmbuild/web
+
 # Allow httpd to run on an alternate port and to act as a network proxy
 /usr/sbin/semanage port -a -t http_port_t -p tcp 8181
 /usr/sbin/setsebool httpd_can_network_connect true
@@ -92,14 +99,14 @@ ln -s /etc/vm-rpmbuild/web/httpd.conf /etc/httpd/conf/httpd.conf
 echo "
 Listen 8181
 ServerName vm-rpmbuild
-ProxyPass        /build http://localhost:8080/build
-ProxyPassReverse /build http://localhost:8080/build
-ProxyRequests Off
-ProxyPreserveHost On
-<Proxy http://localhost:8080/build*>
-   Order deny,allow
-   Allow from all
-</Proxy>
+#ProxyPass        /build http://localhost:8080/build
+#ProxyPassReverse /build http://localhost:8080/build
+#ProxyRequests Off
+#ProxyPreserveHost On
+#<Proxy http://localhost:8080/build*>
+#   Order deny,allow
+#   Allow from all
+#</Proxy>
 " >> /etc/vm-rpmbuild/web/httpd.conf
 # ---------------------------------------------------------------
 
@@ -124,10 +131,11 @@ chown tomcat.tomcat /mnt/jenkins
 
 # Modify the http connector element in the tomcat server.xml file so it
 # works with our proxy and won't complain about Tomcat URI Encoding
-sed -i 's/connectionTimeout="20000"/connectionTimeout="20000" URIEncoding="UTF-8" proxyPort="80" proxyName="localhost"/' /etc/vm-rpmbuild/web/server.xml
+#sed -i 's/connectionTimeout="20000"/connectionTimeout="20000" URIEncoding="UTF-8" proxyPort="80" proxyName="localhost"/' /etc/vm-rpmbuild/web/server.xml
+sed -i 's/connectionTimeout="20000"/connectionTimeout="20000" URIEncoding="UTF-8"/' /etc/vm-rpmbuild/web/server.xml
 
 # Modify the tomcat6 config file to pick up our preferred version of Java
-# and also set teh Jenkins home
+# and also set the Jenkins home
 echo "
 JAVA_HOME=\"/usr/java/latest\"
 JAVA_OPTS=\"-DJENKINS_HOME=/mnt/jenkins -Xmx512m\"
@@ -141,10 +149,6 @@ chown root.tomcat build.war
 
 
 # ---------------------------------------------------------------
-
-
-# Just don't like to wait ;)
-#sed -i 's/timeout=5/timeout=0/' /etc/grub.conf
 
 # Add some authorized public keys to the system
 mkdir /root/.ssh
