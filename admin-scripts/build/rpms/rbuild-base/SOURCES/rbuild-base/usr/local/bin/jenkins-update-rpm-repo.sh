@@ -25,4 +25,4 @@ cp RPMS/noarch/*.rpm $RPM_REPO_DIR/x86_64
 cp SRPMS/*.rpm $RPM_REPO_DIR/SRPMS
 
 # Update metadata info for that repo
-./update-rpm-repo.sh $RPM_REPO_DIR
+/usr/local/bin/update-rpm-repo.sh $RPM_REPO_DIR
