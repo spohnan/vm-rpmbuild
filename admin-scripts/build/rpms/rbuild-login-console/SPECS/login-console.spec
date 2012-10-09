@@ -15,7 +15,7 @@ URL:       https://github.com/spohnan/vm-rpmbuild
 License:   MIT
 
 %description
-This package manages the trac wiki configuration files as installed for the Vigilant Pursuit (VP) program.
+A customized login screen
 
 %prep
 exit 0
