@@ -148,7 +148,7 @@ sed -i 's/connectionTimeout="20000"/connectionTimeout="20000" URIEncoding="UTF-8
 # and also set the Jenkins home
 echo "
 JAVA_HOME=\"/usr/java/latest\"
-JAVA_OPTS=\"-DJENKINS_HOME=/mnt/jenkins -Xmx512m\"
+JAVA_OPTS=\"-DJENKINS_HOME=/mnt/vm-rpmbuild/jenkins -Xmx512m\"
 " >> /etc/vm-rpmbuild/web/tomcat6.conf
 
 cd /usr/share/tomcat6/webapps/
