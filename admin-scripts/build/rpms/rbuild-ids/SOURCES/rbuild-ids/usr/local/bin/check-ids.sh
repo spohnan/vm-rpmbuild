@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# run-ids.sh - Run the intrusion detection system and update status file
+# check-ids.sh - Run the intrusion detection system and update status file
 #
 
 source /etc/vm-rpmbuild/ids/aide-settings.sh

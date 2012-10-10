@@ -3,4 +3,4 @@
 # run-ids - Runs intrusion detection system from cron job
 #
 
-/usr/local/bin/run-ids.sh
+/usr/local/bin/check-ids.sh

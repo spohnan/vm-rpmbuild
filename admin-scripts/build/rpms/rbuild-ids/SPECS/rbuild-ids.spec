@@ -48,7 +48,7 @@ exit 0
 /etc/vm-rpmbuild/ids/status
 /mnt/vm-rpmbuild/ids
 /mnt/vm-rpmbuild/ids/logs
-/usr/local/bin/run-ids.sh
+/usr/local/bin/check-ids.sh
 /usr/local/bin/update-ids-db.sh
 
 
