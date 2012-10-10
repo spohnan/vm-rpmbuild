@@ -44,7 +44,7 @@ exit 0
 /etc/cron.daily/run-ids
 /etc/vm-rpmbuild/ids
 /etc/vm-rpmbuild/ids/aide.conf
-/etc/vm-rpmbuild/ids/aide-settings.conf
+/etc/vm-rpmbuild/ids/aide-settings.sh
 /etc/vm-rpmbuild/ids/status
 /mnt/vm-rpmbuild/ids
 /mnt/vm-rpmbuild/ids/logs
