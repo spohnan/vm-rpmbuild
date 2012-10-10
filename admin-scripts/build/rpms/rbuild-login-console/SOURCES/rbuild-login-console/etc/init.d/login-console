@@ -3,26 +3,43 @@
 # chkconfig: 35 90 12
 # description: login-console
 #
-# Get function from functions library
-. /etc/init.d/functions
 
+# Filter out the IP address
+IPADDR=`/sbin/ifconfig | sed '/Bcast/!d' | awk '{print $2}'| awk '{print $2}' FS=":"`
+
+# Various color codes for shell scripts
 ESC=$(echo -e "\e")
 CLEAR_SCREEN=$(echo -e "\e[H\e[2J")
-IPADDR=`/sbin/ifconfig | sed '/Bcast/!d' | awk '{print $2}'| awk '{print $2}' FS=":"`
-YELLOW="$ESC[33m"
+BROWN="$ESC[33m"
 WHITE="$ESC[37m"
 HIDDEN="$ESC[8;30;40m"
+YELLOW_BLOCK="$ESC[1;33;7m"
+REGULAR="$ESC[0m"
+
+# Files that contain status codes
 BUILD=$(cat /etc/vm-rpmbuild/build)
 RELEASE=$(cat /etc/vm-rpmbuild/release)
+
+# If the IDS has been installed check the status file
+IDS_STATUS=""
+if test -f /etc/vm-rpmbuild/ids/status ; then
+    IDS_STATUS=$(cat /etc/vm-rpmbuild/ids/status)
+fi
+
+# if the IDS status is anything but OK post a warning banner
+APPLIANCE_UPDATE_ALERT=""
+if test "$IDS_STATUS" != "OK" ; then
+    APPLIANCE_UPDATE_ALERT="$YELLOW_BLOCK Local Updates Have Been Made $REGULAR"
+fi
 
 start() {
 
 echo $CLEAR_SCREEN > /etc/issue
 echo "
-$YELLOW
+$BROWN
                                 RPM Building Appliance
                                         v$RELEASE
-
+                               $APPLIANCE_UPDATE_ALERT
 $WHITE
 
 
@@ -30,7 +47,7 @@ $WHITE
 
                 Navigate to http://$IPADDR with a web browser
 
-$YELLOW
+$BROWN
 
 
 
