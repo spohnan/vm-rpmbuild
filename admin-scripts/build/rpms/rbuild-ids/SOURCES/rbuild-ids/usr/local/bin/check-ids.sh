@@ -28,4 +28,4 @@ else
 fi
 
 update_logs
-
+update_login_console

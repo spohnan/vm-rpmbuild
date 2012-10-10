@@ -28,6 +28,13 @@ reset_db() {
     fi
 }
 
+update_login_console() {
+    # Should be there but check to ensure we
+    if test -f /etc/init.d/login-console ; then
+        /sbin/service login-console restart
+    fi
+}
+
 set_status_ok() {
     echo $STATUS_OK > $STATUS_FILE
 }

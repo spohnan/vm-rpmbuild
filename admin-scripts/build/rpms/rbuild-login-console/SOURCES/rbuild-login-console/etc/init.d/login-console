@@ -39,7 +39,7 @@ echo "
 $BROWN
                                 RPM Building Appliance
                                         v$RELEASE
-                               $APPLIANCE_UPDATE_ALERT
+                            $APPLIANCE_UPDATE_ALERT
 $WHITE
 
 

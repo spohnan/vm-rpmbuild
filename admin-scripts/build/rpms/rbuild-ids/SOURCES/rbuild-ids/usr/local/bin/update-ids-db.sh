@@ -13,5 +13,5 @@ if test -f $DB_FILE ; then
     reset_db
 
     update_logs
-
+    update_login_console
 fi
