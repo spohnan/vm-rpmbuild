@@ -49,6 +49,7 @@ exit 0
 /mnt/vm-rpmbuild/ids
 /mnt/vm-rpmbuild/ids/logs
 /usr/local/bin/check-ids.sh
+/usr/local/bin/latest-changes-ids.sh
 /usr/local/bin/update-ids-db.sh
 
 
