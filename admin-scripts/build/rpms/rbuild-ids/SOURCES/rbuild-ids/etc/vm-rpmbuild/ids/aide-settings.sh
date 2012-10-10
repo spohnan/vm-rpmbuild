@@ -18,7 +18,7 @@ update_logs() {
     mv $LOGDIR/$LOG_FILE_NAME $LOGDIR/aide.$(date +%Y%m%d%H%M%S).log
 
     # List logs sorted by most recent first, chop off the oldest using tail and pipe to rm
-    ls -t $LOGDIR | tail -n +$(($MAX_NUM_LOGS+1)) | xargs -d '\n' rm -f
+    ls -t $LOGDIR | tail -n +$MAX_NUM_LOGS | xargs -d '\n' rm -f
 }
 
 reset_db() {
