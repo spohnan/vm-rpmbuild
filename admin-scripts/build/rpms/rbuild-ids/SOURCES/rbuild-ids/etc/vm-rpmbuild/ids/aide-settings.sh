@@ -9,4 +9,5 @@ DBDIR=$IDS_HOME
 DB_FILE=$DBDIR/aide.db.gz
 NEW_DB_FILE=$DBDIR/aide.db.new.gz
 LOGDIR=$IDS_HOME/logs
+LOG_FILE_NAME=aide.log
 MAX_NUM_LOGS=10

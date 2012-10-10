@@ -3,7 +3,7 @@
 # run-ids.sh - Run the intrusion detection system and update status file
 #
 
-source /etc/vm-rpmbuild/ids/aide-settings.conf
+source /etc/vm-rpmbuild/ids/aide-settings.sh
 
 # If the db file is already there run a check against it
 if test -f $DB_FILE ; then
@@ -26,6 +26,9 @@ else
     mv $NEW_DB_FILE $DB_FILE
     echo $STATUS_OK > $STATUS_FILE
 fi
+
+# Give the log file a date stamp so they don't overwrite each other
+mv $LOGDIR/$LOG_FILE_NAME $LOGDIR/aide.$(date +%Y%m%d%H%M%S).log
 
 # List logs sorted by most recent first, chop off the oldest using tail and pipe to rm
 ls -t $LOGDIR | tail -n +$(($MAX_NUM_LOGS+1)) | xargs -d '\n' rm -f

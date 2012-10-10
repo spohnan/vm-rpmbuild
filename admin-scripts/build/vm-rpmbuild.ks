@@ -63,6 +63,7 @@ createrepo
 # Custom packages
 rbuild-base
 rbuild-login-console
+rbuild-ids
 
 %post
 (
