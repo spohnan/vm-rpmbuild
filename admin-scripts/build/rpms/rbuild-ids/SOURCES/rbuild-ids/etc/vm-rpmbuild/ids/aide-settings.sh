@@ -11,3 +11,27 @@ NEW_DB_FILE=$DBDIR/aide.db.new.gz
 LOGDIR=$IDS_HOME/logs
 LOG_FILE_NAME=aide.log
 MAX_NUM_LOGS=10
+
+
+update_logs() {
+    # Give the log file a date stamp so they don't overwrite each other
+    mv $LOGDIR/$LOG_FILE_NAME $LOGDIR/aide.$(date +%Y%m%d%H%M%S).log
+
+    # List logs sorted by most recent first, chop off the oldest using tail and pipe to rm
+    ls -t $LOGDIR | tail -n +$(($MAX_NUM_LOGS+1)) | xargs -d '\n' rm -f
+}
+
+reset_db() {
+    if test -f $NEW_DB_FILE ; then
+        mv -f $NEW_DB_FILE $DB_FILE
+        echo $STATUS_OK > $STATUS_FILE
+    fi
+}
+
+set_status_ok() {
+    echo $STATUS_OK > $STATUS_FILE
+}
+
+set_status_changed() {
+    echo $STATUS_CHANGED > $STATUS_FILE
+}
