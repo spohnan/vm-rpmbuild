@@ -46,8 +46,6 @@ vim-enhanced
 screen
 # Listen for VM software startup/shutdown commands
 acpid
-# Appliance change detection
-aide
 
 # Needed to both install Apache httpd and configure selinux so it can run on multiple ports
 policycoreutils-python

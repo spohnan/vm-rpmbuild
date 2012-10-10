@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# run-ids - Runs intrusion detection system from cron job
+#
+
+/usr/local/bin/run-ids.sh
