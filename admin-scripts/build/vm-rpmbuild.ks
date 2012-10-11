@@ -35,17 +35,13 @@ logvol /var/log --fstype=ext4 --name=lv_log --vgname=VolGroup --grow --percent=3
 logvol /var/log/audit --fstype=ext4 --name=lv_audit --vgname=VolGroup --grow --percent=3 --maxsize=10240
 
 repo --name="ThirdParty" --baseurl=http://192.168.100.2/repo/thirdparty/x86_64/
+repo --name="vm-rpmbuild-dev" --baseurl=http://192.168.100.152/repos/vm-rpmbuild-dev/x86_64/
 
 # Start with the a minimal install
 %packages --nobase
 @core
-
-# Some nice to have improvements
-git
-vim-enhanced
-screen
-# Listen for VM software startup/shutdown commands
-acpid
+@vm-additions
+@rpm-dev-package
 
 # Needed to both install Apache httpd and configure selinux so it can run on multiple ports
 policycoreutils-python
@@ -55,11 +51,6 @@ httpd
 jdk
 tomcat6
 
-# Packages needed to build and host rpms and repos
-rpm-build
-rpmlint
-createrepo
-
 # Custom packages
 rbuild-base
 rbuild-login-console
@@ -68,14 +59,16 @@ rbuild-ids
 %post
 (
 
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
 # Needs to be running to hear virtsh shutdown commands
-/sbin/chkconfig acpid on
-/sbin/chkconfig httpd on
-/sbin/chkconfig tomcat6 on
+chkconfig acpid on
+chkconfig httpd on
+chkconfig tomcat6 on
 
 # Turn off some services we don't need at the moment
-/sbin/chkconfig cups off
-/sbin/chkconfig postfix off
+chkconfig cups off
+chkconfig postfix off
 
 # ---------------------------------------------------------------
 # Update Apache httpd web server config
@@ -91,8 +84,8 @@ chmod -R 775 /var/www/html/repos
 mkdir /etc/vm-rpmbuild/web
 
 # Allow httpd to run on an alternate port and to act as a network proxy
-/usr/sbin/semanage port -a -t http_port_t -p tcp 8181
-/usr/sbin/setsebool httpd_can_network_connect true
+semanage port -a -t http_port_t -p tcp 8181
+setsebool httpd_can_network_connect true
 
 # Copy the original config file to our vm-rpmbuild config area
 cp /etc/httpd/conf/httpd.conf /etc/vm-rpmbuild/web/httpd.conf
@@ -168,6 +161,12 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmSq6cUPCFbu6/zUSljuDd7ifAlSp7qdIixnKoi
 chmod 700 /root/.ssh
 chmod 600 /root/.ssh/authorized_keys
 
+
+# Disable the bundled yum repos
+for file in /etc/yum.repos.d/*.repo ; do
+    mv -i ${file} ${file}-DISABLED
+done
+
 # Add our local repos as preferred
 echo "
 [local-base]
@@ -188,6 +187,12 @@ baseurl=http://192.168.100.2/repo/thirdparty/x86_64/
 metadata_expire=1
 gpgcheck=0
 cost=1
+
+[vm-rpmbuild-dev]
+name=vm-rpmbuild-dev
+baseurl=http://192.168.100.152/repos/vm-rpmbuild-dev/x86_64/
+metadata_expire=1
+gpgcheck=0
 " > /etc/yum.repos.d/CentOS-Local.repo
 
 ) > /root/post_install.log

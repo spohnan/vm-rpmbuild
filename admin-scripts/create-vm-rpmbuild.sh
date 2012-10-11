@@ -56,5 +56,5 @@ virt-install          \
     --disk path=$DISK_STORAGE_LOCATION/$1.$DISK_FORMAT,size=$DISK_SIZE_IN_GB,format=$DISK_FORMAT \
     --network network=$NETWORK_NAME \
     --graphics vnc \
-    --location $BUILD_SERVER/repo/CentOS/6/os/x86_64/ \
+    --location $BUILD_SERVER/repo/CentOS-patched/6/os/x86_64/ \
     --extra-args "ks=$BUILD_SERVER/kickstart/vm-rpmbuild.ks ksdevice=eth0 ip=$TEMP_IP"
