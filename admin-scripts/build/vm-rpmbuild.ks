@@ -36,8 +36,8 @@ logvol /var/log/audit --fstype=ext4 --name=lv_audit --vgname=VolGroup --grow --p
 
 repo --name="ThirdParty" --baseurl=http://192.168.100.2/repo/thirdparty/x86_64/
 
+# Start with the a minimal install
 %packages --nobase
-# Basic packages needed to run system
 @core
 
 # Some nice to have improvements
