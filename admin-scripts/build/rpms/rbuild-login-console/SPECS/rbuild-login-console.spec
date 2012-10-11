@@ -35,6 +35,8 @@ rm -fr %{buildroot}
 exit 0
 
 %post
+# Update build timestamp
+echo `date +%Y-%m-%dT%H:%MZ` > %{_sysconfdir}/vm-rpmbuild/build
 /sbin/chkconfig login-console on
 /sbin/service login-console start
 

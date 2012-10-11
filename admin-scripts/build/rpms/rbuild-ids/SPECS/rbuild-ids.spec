@@ -37,7 +37,8 @@ rm -fr %{buildroot}
 exit 0
 
 %post
-exit 0
+# Update build timestamp
+echo `date +%Y-%m-%dT%H:%MZ` > %{_sysconfdir}/vm-rpmbuild/build
 
 %files
 %defattr(755,root,root)
