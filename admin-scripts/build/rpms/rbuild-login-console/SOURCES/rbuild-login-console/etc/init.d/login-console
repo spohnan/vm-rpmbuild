@@ -4,6 +4,9 @@
 # description: login-console
 #
 
+# Appliance name
+APP_NAME="RPM Building Appliance"
+
 # Filter out the IP address
 IPADDR=`/sbin/ifconfig | sed '/Bcast/!d' | awk '{print $2}'| awk '{print $2}' FS=":"`
 
@@ -34,10 +37,16 @@ fi
 
 start() {
 
+# Update banner shown when using ssh from a terminal into the appliance
+echo "$APP_NAME v$RELEASE - Last Updated: $BUILD $APPLIANCE_UPDATE_ALERT
+" > /etc/motd
+
+# Now update the login screen of the appliance
+
 echo $CLEAR_SCREEN > /etc/issue
 echo "
 $BROWN
-                                RPM Building Appliance
+                                $APP_NAME
                                         v$RELEASE
                             $APPLIANCE_UPDATE_ALERT
 $WHITE
