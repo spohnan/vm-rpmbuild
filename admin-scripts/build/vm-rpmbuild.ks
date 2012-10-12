@@ -110,6 +110,10 @@ ServerName vm-rpmbuild
 #   Allow from all
 #</Proxy>
 " >> /etc/vm-rpmbuild/web/httpd.conf
+
+# Don't reveal extended server info in web responses
+sed -i 's/ServerTokens OS/ServerTokens Prod/' /etc/vm-rpmbuild/web/httpd.conf
+
 # ---------------------------------------------------------------
 
 # ---------------------------------------------------------------
