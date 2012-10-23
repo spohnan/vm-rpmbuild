@@ -29,11 +29,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="/index.html"><i class="icon-cogs"></i> RPM Builder</a>
+                <a class="brand" href="/web-ui/dashboard"><i class="icon-cogs"></i> RPM Builder</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="/dashboard"><i class="icon-dashboard"></i> Dashboard</a></li>
-                        <li><a href="/admin"><i class="icon-wrench"></i> Admin</a></li>
+                        <li><a href="/web-ui/dashboard"><i class="icon-dashboard"></i> Dashboard</a></li>
+                        <li><a href="/web-ui/admin"><i class="icon-wrench"></i> Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +70,7 @@
         <form>
             <legend><i class="icon-wrench"></i> Admin</legend>
         </form>
-        <button id="btn-test" class="btn btn-primary">Test</button>
+        <button id="btn-test" class="btn btn-primary">Update Version</button>
     </script>
 
     <script id="dashboard-template" type="text/x-handlebars-template">

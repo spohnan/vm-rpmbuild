@@ -4,6 +4,7 @@ YUI_config = {
             base: '/web-ui/',
             async: false,
             modules: {
+
                 'bootstrap': {
                     path: 'lib/bootstrap/js/bootstrap.min.js',
                     requires: ['jquery', 'font-awesome-css', 'bootstrap-css', 'bootstrap-responsive-css']
@@ -22,6 +23,18 @@ YUI_config = {
                 },
                 'jquery': {
                     path: 'lib/jquery/jquery-1.8.2.min.js'
+                },
+                'appInfoModel': {
+                    path: 'js/models/appInfoModel.js'
+                },
+                'adminView': {
+                    path: 'js/views/adminView.js'
+                },
+                'dashboardView': {
+                    path: 'js/views/dashboardView.js'
+                },
+                'partials': {
+                    path: 'js/views/partials.js'
                 }
             }
         }
