@@ -1,9 +1,9 @@
-YUI().add('dashboardView', function (Y) {
+YUI().add('repoView', function (Y) {
 
-    Y.DashboardView = Y.Base.create('dashboardView', Y.View, [], {
+    Y.RepoView = Y.Base.create('repoView', Y.View, [], {
         render: function () {
-            //var template = Y.Handlebars.compile(Y.io("exec/fetch?template=dashboard", { sync: true }).responseText);
-            var template = Y.AppCache.getTemplate('dashboard');
+            //var template = Y.Handlebars.compile(Y.io("exec/fetch?template=repo", { sync: true }).responseText);
+            var template = Y.AppCache.getTemplate('repo');
             var appInfo = Y.AppCache.getAppInfo();
             this.get('container').setHTML(template({
                                             version: appInfo.appliance.version,

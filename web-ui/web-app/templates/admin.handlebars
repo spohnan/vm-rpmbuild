@@ -3,4 +3,12 @@
 <form>
     <legend><i class="icon-wrench"></i> Admin</legend>
 </form>
-<button id="btn-test" class="btn btn-primary">Update Version</button>
+<form>
+    <legend>Application Cache</legend>
+    <b>Cache Items: </b><br/>
+    {{#each cacheInfo}}
+        {{this.request}}<br/>
+    {{/each}}
+
+    <button id="btn-test" class="btn btn-primary">Clear Cache</button>
+</form>

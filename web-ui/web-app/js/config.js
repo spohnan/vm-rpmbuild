@@ -27,14 +27,26 @@ YUI_config = {
                 'appInfoModel': {
                     path: 'js/models/appInfoModel.js'
                 },
+                'repoModel': {
+                    path: 'js/models/repoModel.js'
+                },
+                'repoModelList': {
+                    path: 'js/models/repoModelList.js'
+                },
                 'adminView': {
                     path: 'js/views/adminView.js'
                 },
                 'dashboardView': {
                     path: 'js/views/dashboardView.js'
                 },
+                'repoView': {
+                    path: 'js/views/repoView.js'
+                },
                 'partials': {
                     path: 'js/views/partials.js'
+                },
+                'appCache': {
+                    path: 'js/util/appCache.js'
                 }
             }
         }

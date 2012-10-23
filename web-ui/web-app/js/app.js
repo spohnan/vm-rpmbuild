@@ -1,28 +1,29 @@
 YUI().use(
     'handlebars', 'bootstrap', 'app-base',
     'io-base', 'json-parse', 'appInfoModel',
-    'adminView', 'dashboardView', 'partials', function (Y) {
-
-    // The AppInfo model loads some fairly static app state (version, last updated)
-    var appInfo = new Y.AppInfo();
-    appInfo.load();
+    'adminView', 'dashboardView', 'repoView',
+    'partials', function (Y) {
 
     var app  = new Y.App({
         viewContainer : '#app',
         root: '/web-ui',
-
         views: {
             admin:     { type: 'AdminView'     },
-            dashboard: { type: 'DashboardView' }
+            dashboard: { type: 'DashboardView' },
+            repo:      { type: 'RepoView'      }
         },
 
         routes: [{
             path: '/dashboard',
-            callback: function() { this.showView('dashboard', { model: appInfo }); }
+            callback: function() { this.showView('dashboard'); }
         }, {
             path: '/admin',
-            callback: function() { this.showView('admin', { model: appInfo }); }
+            callback: function() { this.showView('admin'); }
+        }, {
+            path: '/repo',
+            callback: function() { this.showView('repo'); }
         }]
+
     });
 
     // Figure out what view the client is requesting and route accordingly

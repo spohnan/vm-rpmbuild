@@ -4,27 +4,22 @@ YUI().add('adminView', function (Y) {
         events: {
             '#btn-test': {
                 click: function() {
-                    var model = this.get('model');
-                    model.set('version', "2.2.2");
-                    model.set('updated', new Date().toString());
+                    Y.AppCache.flush();
                 }
             }
         },
-        initializer: function() {
-            var model = this.get('model');
-            model.after('*:change', this.render, this);
-        },
         render: function () {
-            var model = this.get('model');
-            var template = Y.Handlebars.compile(Y.io("exec/fetch?template=admin", { sync: true }).responseText);
-
+            var template = Y.AppCache.getTemplate('admin');
+            var appInfo = Y.AppCache.getAppInfo();
+            console.log(Y.AppCache.getCacheInfo());
             this.get('container').setHTML(template({
-                                            version: model.get('version'),
-                                            last_updated: model.get('updated'),
-                                            local_changelist: model.get('local_changelist')
+                                            version: appInfo.appliance.version,
+                                            last_updated: appInfo.appliance.updated,
+                                            local_changelist: appInfo.appliance.local_changelist,
+                                            cacheInfo: Y.AppCache.getCacheInfo()
                                         }));
             return this;
         }
     });
 
-}, '1.0', {requires: ['view']} );
+}, '1.0', {requires: ['view', 'appCache']} );

@@ -34,6 +34,7 @@
                     <ul class="nav">
                         <li><a href="/web-ui/dashboard"><i class="icon-dashboard"></i> Dashboard</a></li>
                         <li><a href="/web-ui/admin"><i class="icon-wrench"></i> Admin</a></li>
+                        <li><a href="/web-ui/repo"><i class="icon-download"></i> Repositories</a></li>
                     </ul>
                 </div>
             </div>
