@@ -1,0 +1,14 @@
+{{#if local_changelist}}
+<div class="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Warning!</strong> Some files have been locally modified on this appliance
+    <button type="button" style="margin-left: 15px" class="btn btn-warning btn-mini" data-toggle="collapse" data-target="#demo">
+        more ...
+    </button>
+    <div id="demo" class="collapse">
+    {{#each local_changelist}}
+        {{this.name}}<br/>
+    {{/each}}
+    </div>
+</div>
+{{/if}}

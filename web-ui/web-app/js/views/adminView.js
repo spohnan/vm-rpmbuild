@@ -6,6 +6,7 @@ YUI().add('adminView', function (Y) {
                 click: function() {
                     var model = this.get('model');
                     model.set('version', "2.2.2");
+                    model.set('updated', new Date().toString());
                 }
             }
         },
@@ -15,7 +16,8 @@ YUI().add('adminView', function (Y) {
         },
         render: function () {
             var model = this.get('model');
-            var template = Y.Handlebars.compile(Y.one('#admin-template').getHTML());
+            var template = Y.Handlebars.compile(Y.io("exec/fetch?template=admin", { sync: true }).responseText);
+
             this.get('container').setHTML(template({
                                             version: model.get('version'),
                                             last_updated: model.get('updated'),

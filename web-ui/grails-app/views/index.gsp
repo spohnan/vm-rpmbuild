@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/ico" href="img/favicon.ico">
+    <link rel="icon" type="image/ico" href="images/favicon.ico">
     <style> body { padding-top: 60px; /* Align the body container with the bottom of the topbar */ } </style>
     <!--[if IE 7]>
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-ie7.css"><![endif]-->
@@ -40,56 +40,7 @@
         </div>
     </div>
 
-
     <div id="app" class="container"></div>
 
-    <script id="version-partial" type="text/x-handlebars-template">
-        <div class="muted">Appliance: v{{version}} - Last Updated: {{last_updated}}</div>
-    </script>
-
-    <script id="warning-banner-partial" type="text/x-handlebars-template">
-        {{#if local_changelist}}
-        <div class="alert">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Warning!</strong> Some files have been locally modified on this appliance
-            <button type="button" style="margin-left: 15px" class="btn btn-warning btn-mini" data-toggle="collapse" data-target="#demo">
-                more ...
-            </button>
-            <div id="demo" class="collapse">
-            {{#each local_changelist}}
-                {{this.name}}<br/>
-            {{/each}}
-            </div>
-        </div>
-        {{/if}}
-    </script>
-
-    <script id="admin-template" type="text/x-handlebars-template">
-        {{>warning-banner}}
-        {{>version}}
-        <form>
-            <legend><i class="icon-wrench"></i> Admin</legend>
-        </form>
-        <button id="btn-test" class="btn btn-primary">Update Version</button>
-    </script>
-
-    <script id="dashboard-template" type="text/x-handlebars-template">
-        {{>warning-banner}}
-        {{>version}}
-        <form>
-            <legend><i class="icon-dashboard"></i> Dashboard</legend>
-        </form>
-    </script>
-
-    <script>
-//        var _gaq = _gaq || [];
-//        _gaq.push(['_setAccount', 'UA-22981039-1']);
-//        _gaq.push(['_trackPageview']);
-//        (function() {
-//            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-//        })();
-    </script>
 </body>
 </html>

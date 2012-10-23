@@ -9,6 +9,13 @@ class ExecController {
     def DEFAULT_PROCESS_TIMEOUT = 5000;
     def DEFAULT_WORKING_DIR = new File("/tmp")
 
+   def fetch() {
+       // FIXME: Determine base path through app metadata grails.serverUrl?
+       def templateHome = "http://localhost:8080/web-ui/templates"
+       def retVal = "${templateHome}/${params.template}.handlebars".toURL().text
+       render(text: retVal, contentType: "text/plain", encoding: "UTF-8")
+   }
+
     def test() {
         def retVal = runCmd("ls -l")
         if (retVal.equals(ExecService.ERROR_VALUE)) {

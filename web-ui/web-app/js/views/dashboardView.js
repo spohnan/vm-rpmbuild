@@ -3,7 +3,7 @@ YUI().add('dashboardView', function (Y) {
     Y.DashboardView = Y.Base.create('dashboardView', Y.View, [], {
         render: function () {
             var model = this.get('model');
-            var template = Y.Handlebars.compile(Y.one('#dashboard-template').getHTML());
+            var template = Y.Handlebars.compile(Y.io("exec/fetch?template=dashboard", { sync: true }).responseText);
             this.get('container').setHTML(template({
                                 version: model.get('version'),
                                 last_updated: model.get('updated'),
