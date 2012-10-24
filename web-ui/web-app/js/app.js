@@ -1,8 +1,7 @@
 YUI().use(
     'handlebars', 'bootstrap', 'app-base',
-    'io-base', 'json-parse', 'appInfoModel',
-    'adminView', 'dashboardView', 'repoView',
-    'partials', function (Y) {
+    'io-base', 'json-parse', 'adminView',
+    'dashboardView', 'repoView', 'partials', function (Y) {
 
     var app  = new Y.App({
         viewContainer : '#app',

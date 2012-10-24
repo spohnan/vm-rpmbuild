@@ -18,6 +18,19 @@
     <script src="lib/yui/build/yui/yui-min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
+    <style>
+        .table-cell {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+            font-size: 115% !important;
+        }
+        .
+        .alert {
+            margin-bottom: 10px;
+        }
+        #cacheItems {
+            height: 160px;
+        }
+    </style>
 </head>
 <body class="yui3-skin-sam">
 

@@ -1,8 +1,11 @@
 YUI().add('appCache', function (Y) {
 
     Y.AppCache = (function() {
-        var templateCache = new Y.Cache({max: 25 ,expires: 60000});
-        var miscCache = new Y.Cache({max: 25 ,expires: 60000});
+        var ONE_MINUTE = 60 * 1000;
+        var NO_EXPIRATION = 0;
+
+        var templateCache = new Y.Cache({max: 25 ,expires: NO_EXPIRATION});
+        var miscCache = new Y.Cache({max: 25 ,expires: ONE_MINUTE});
 
         return {
 
@@ -48,4 +51,4 @@ YUI().add('appCache', function (Y) {
 
     }());
 
-}, '1.0', {requires: ['cache', 'appInfoModel']} );
+}, '1.0', {requires: ['cache']} );

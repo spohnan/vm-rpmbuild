@@ -4,11 +4,9 @@
     <legend><i class="icon-wrench"></i> Admin</legend>
 </form>
 <form>
-    <legend>Application Cache</legend>
-    <b>Cache Items: </b><br/>
-    {{#each cacheInfo}}
-        {{this.request}}<br/>
-    {{/each}}
-
+    <legend>Application Cache Items</legend>
+    <div class="well well-small">
+        <div id="cacheItems"></div>
+    </div>
     <button id="btn-test" class="btn btn-primary">Clear Cache</button>
 </form>

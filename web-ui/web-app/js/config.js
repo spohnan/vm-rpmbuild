@@ -1,8 +1,10 @@
 YUI_config = {
+    skin: 'sam',
     groups: {
         'app': {
             base: '/web-ui/',
             async: false,
+
             modules: {
 
                 'bootstrap': {
@@ -23,9 +25,6 @@ YUI_config = {
                 },
                 'jquery': {
                     path: 'lib/jquery/jquery-1.8.2.min.js'
-                },
-                'appInfoModel': {
-                    path: 'js/models/appInfoModel.js'
                 },
                 'repoModel': {
                     path: 'js/models/repoModel.js'
